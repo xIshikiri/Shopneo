@@ -1,3 +1,5 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/app/src/main/java/com/example/shopneo/CreateData.java
+/app/src/main/java/com/example/shopneo/ItemReader.java
