@@ -1,11 +1,17 @@
 package com.example.shopneo;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public final class Shopneo {
 
@@ -121,11 +127,13 @@ public final class Shopneo {
 
     public static class ShopneoDBHelper extends SQLiteOpenHelper{
 
+        private final Context context;
         public static final int DATABASE_VERSION = 1;
         public static final String DATABASE_NAME = "Shopneo.db";
 
         public ShopneoDBHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            this.context = context;
         }
 
         @Override
@@ -155,7 +163,21 @@ public final class Shopneo {
         }
 
         private void importData(SQLiteDatabase db){
+            List<String> article_names = Arrays.asList(context.getResources().getStringArray(R.array.article_names));
+            TypedArray article_photos = context.getResources().obtainTypedArray(R.array.article_photos);
+            TypedArray article_prices = context.getResources().obtainTypedArray(R.array.article_prices);
+            List<String> article_types = Arrays.asList(context.getResources().getStringArray(R.array.article_types));
 
+            for (int i = 0; i < article_names.size(); i++){
+                db.execSQL("INSERT INTO Product(name, photo, price, type) VALUES ('"
+                        + article_names.get(i) + "', "
+                        + article_photos.getResourceId(i, -1) + ", "
+                        + article_prices.getFloat(i, -1) + ", '"
+                        + article_types.get(i) + "');");
+            }
+
+            article_photos.recycle();
+            article_prices.recycle();
         }
     }
 }

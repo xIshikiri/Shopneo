@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="article_names">
+        <item>@string/shirt_joker</item>
+        <item>@string/shirt_opm</item>
+        <item>@string/shirt_maid</item>
+    </string-array>
+
+    <array name="article_photos">
+        <item>@drawable/joker</item>
+        <item>@drawable/opm</item>
+        <item>@drawable/maid</item>
+    </array>
+
+    <array name="article_prices">
+        <item>19.99</item>
+        <item>29.99</item>
+        <item>39.99</item>
+    </array>
+
+    <string-array name="article_types">
+        <item>@string/type_shirt</item>
+        <item>@string/type_shirt</item>
+        <item>@string/type_shirt</item>
+    </string-array>
+
+    <string name="shirt_joker">Joker T-Shirt</string>
+    <string name="shirt_opm">OPM T-Shirt</string>
+    <string name="shirt_maid">Maid T-Shirt</string>
+
+    <string name="type_shirt">Shirt</string>
+    <string name="type_pants">Pants</string>
+    <string name="type_accessory">Accessory</string>
+
+</resources>
