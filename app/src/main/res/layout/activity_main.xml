@@ -27,17 +27,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
-            android:text="@string/login"
+            android:text="@string/email"
             android:textSize="20sp"
             android:textAllCaps="true"/>
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginStart="20dp"
             android:ems="10"
-            android:inputType="text"/>
+            android:inputType="textEmailAddress"/>
 
     </LinearLayout>
 
@@ -58,6 +59,7 @@
             android:textAllCaps="true"/>
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -74,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:text="@string/register"
+        android:text="@string/login"
         android:textSize="30sp" />
 
     <ImageView
