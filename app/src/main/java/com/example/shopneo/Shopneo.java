@@ -23,7 +23,6 @@ public final class Shopneo {
 
     public static class Account implements BaseColumns {
         private static final String ACCOUNT_TABLE_NAME = "Account";
-//        private static final String ACCOUNT_COLUMN_ID = "id_account"; // integer, primary key, unique, auto increment
         private static final String ACCOUNT_COLUMN_ID_CLIENT = "id_client"; // integer
         private static final String ACCOUNT_COLUMN_EMAIL = "email"; // text
         private static final String ACCOUNT_COLUMN_PASSWORD = "password"; // text
@@ -31,7 +30,6 @@ public final class Shopneo {
 
     public static class Client implements BaseColumns {
         private static final String CLIENT_TABLE_NAME = "Client";
-//        private static final String CLIENT_COLUMN_ID = "id_client"; // integer, primary key, unique, auto increment
         private static final String CLIENT_COLUMN_NAME = "name"; // text
         private static final String CLIENT_COLUMN_SURNAME = "surname"; // text
         private static final String CLIENT_COLUMN_DOB = "date_of_birth"; // datetime
@@ -40,7 +38,6 @@ public final class Shopneo {
 
     public static class Cart implements BaseColumns {
         private static final String ORDER_TABLE_NAME = "Cart";
-//        private static final String ORDER_COLUMN_ID = "id_order"; // integer, primary key, unique, auto increment
         private static final String ORDER_COLUMN_ID_CLIENT = "id_client"; // integer
         private static final String ORDER_COLUMN_DATE = "date"; // datetime
         private static final String ORDER_COLUMN_HOME_ADDRESS = "home_address"; // text
@@ -58,8 +55,8 @@ public final class Shopneo {
 
     public static class Product implements BaseColumns {
         private static final String PRODUCT_TABLE_NAME = "Product";
-//        private static final String PRODUCT_COLUMN_ID = "id_product"; // integer, primary key, unique, auto increment
         private static final String PRODUCT_COLUMN_NAME = "name"; // text
+        private static final String PRODUCT_COLUMN_DESC = "description"; // text
         private static final String PRODUCT_COLUMN_PRICE = "price"; // real
         private static final String PRODUCT_COLUMN_TYPE = "type"; // text
         private static final String PRODUCT_COLUMN_PHOTO = "photo"; // text
@@ -67,48 +64,49 @@ public final class Shopneo {
 
     private static final String SQL_CREATE_ACCOUNT =
             "CREATE TABLE IF NOT EXISTS "
-                + Account.ACCOUNT_TABLE_NAME + " ("
-                + Account._ID + " INTEGER PRIMARY KEY, "
-                + Account.ACCOUNT_COLUMN_ID_CLIENT + " INTEGER NOT NULL, "
-                + Account.ACCOUNT_COLUMN_EMAIL + " TEXT NOT NULL, "
-                + Account.ACCOUNT_COLUMN_PASSWORD + " TEXT NOT NULL);";
+                    + Account.ACCOUNT_TABLE_NAME + " ("
+                    + Account._ID + " INTEGER PRIMARY KEY, "
+                    + Account.ACCOUNT_COLUMN_ID_CLIENT + " INTEGER NOT NULL, "
+                    + Account.ACCOUNT_COLUMN_EMAIL + " TEXT NOT NULL, "
+                    + Account.ACCOUNT_COLUMN_PASSWORD + " TEXT NOT NULL);";
 
     private static final String SQL_CREATE_CLIENT =
             "CREATE TABLE IF NOT EXISTS "
-                + Client.CLIENT_TABLE_NAME + " ("
-                + Client._ID + " INTEGER PRIMARY KEY, "
-                + Client.CLIENT_COLUMN_NAME + " TEXT NOT NULL, "
-                + Client.CLIENT_COLUMN_SURNAME + " TEXT NOT NULL, "
-                + Client.CLIENT_COLUMN_DOB + " TEXT NOT NULL, "
-                + Client.CLIENT_COLUMN_PHONE + " TEXT NOT NULL);";
+                    + Client.CLIENT_TABLE_NAME + " ("
+                    + Client._ID + " INTEGER PRIMARY KEY, "
+                    + Client.CLIENT_COLUMN_NAME + " TEXT NOT NULL, "
+                    + Client.CLIENT_COLUMN_SURNAME + " TEXT NOT NULL, "
+                    + Client.CLIENT_COLUMN_DOB + " TEXT NOT NULL, "
+                    + Client.CLIENT_COLUMN_PHONE + " TEXT NOT NULL);";
 
     private static final String SQL_CREATE_ORDER =
             "CREATE TABLE IF NOT EXISTS "
-                + Cart.ORDER_TABLE_NAME + " ("
-                + Cart._ID + " INTEGER PRIMARY KEY, "
-                + Cart.ORDER_COLUMN_ID_CLIENT + " INTEGER NOT NULL, "
-                + Cart.ORDER_COLUMN_DATE + " TEXT NOT NULL, "
-                + Cart.ORDER_COLUMN_HOME_ADDRESS + " TEXT NOT NULL, "
-                + Cart.ORDER_COLUMN_CITY + " TEXT NOT NULL, "
-                + Cart.ORDER_COLUMN_POSTAL_CODE + "TEXT NOT NULL);";
+                    + Cart.ORDER_TABLE_NAME + " ("
+                    + Cart._ID + " INTEGER PRIMARY KEY, "
+                    + Cart.ORDER_COLUMN_ID_CLIENT + " INTEGER NOT NULL, "
+                    + Cart.ORDER_COLUMN_DATE + " TEXT NOT NULL, "
+                    + Cart.ORDER_COLUMN_HOME_ADDRESS + " TEXT NOT NULL, "
+                    + Cart.ORDER_COLUMN_CITY + " TEXT NOT NULL, "
+                    + Cart.ORDER_COLUMN_POSTAL_CODE + "TEXT NOT NULL);";
 
     private static final String SQL_CREATE_ORDER_PRODUCT =
             "CREATE TABLE IF NOT EXISTS "
-                + OrderProduct.ORDER_PRODUCT_TABLE_NAME + " ("
-                + OrderProduct._ID + " INTEEGER PRIMARY KEY, "
-                + OrderProduct.ORDER_PRODUCT_COLUMN_ID_ORDER + " INTEGER NOT NULL, "
-                + OrderProduct.ORDER_PRODUCT_COLUMN_ID_PRODUCT + " INTEGER NOT NULL, "
-                + OrderProduct.ORDER_PRODUCT_COLUMN_COUNT + " INTEGER NOT NULL, "
-                + OrderProduct.ORDER_PRODUCT_COLUMN_SIZE + " TEXT NOT NULL);";
+                    + OrderProduct.ORDER_PRODUCT_TABLE_NAME + " ("
+                    + OrderProduct._ID + " INTEEGER PRIMARY KEY, "
+                    + OrderProduct.ORDER_PRODUCT_COLUMN_ID_ORDER + " INTEGER NOT NULL, "
+                    + OrderProduct.ORDER_PRODUCT_COLUMN_ID_PRODUCT + " INTEGER NOT NULL, "
+                    + OrderProduct.ORDER_PRODUCT_COLUMN_COUNT + " INTEGER NOT NULL, "
+                    + OrderProduct.ORDER_PRODUCT_COLUMN_SIZE + " TEXT NOT NULL);";
 
     private static final String SQL_CREATE_PRODUCT =
             "CREATE TABLE IF NOT EXISTS "
-                + Product.PRODUCT_TABLE_NAME + " ("
-                + Product._ID + " INTEGER PRIMARY KEY, "
-                + Product.PRODUCT_COLUMN_NAME + " TEXT NOT NULL, "
-                + Product.PRODUCT_COLUMN_TYPE + " TEXT NOT NULL, "
-                + Product.PRODUCT_COLUMN_PRICE + " REAL NOT NULL, "
-                + Product.PRODUCT_COLUMN_PHOTO + " TEXT NOT NULL);";
+                    + Product.PRODUCT_TABLE_NAME + " ("
+                    + Product._ID + " INTEGER PRIMARY KEY, "
+                    + Product.PRODUCT_COLUMN_NAME + " TEXT NOT NULL, "
+                    + Product.PRODUCT_COLUMN_DESC + " TEXT NOT NULL, "
+                    + Product.PRODUCT_COLUMN_TYPE + " TEXT NOT NULL, "
+                    + Product.PRODUCT_COLUMN_PRICE + " REAL NOT NULL, "
+                    + Product.PRODUCT_COLUMN_PHOTO + " TEXT NOT NULL);";
 
     private static final String SQL_DELETE_ACCOUNT =
             "DROP TABLE IF EXISTS " + Account.ACCOUNT_TABLE_NAME + ";";
@@ -163,21 +161,30 @@ public final class Shopneo {
         }
 
         private void importData(SQLiteDatabase db){
-            List<String> article_names = Arrays.asList(context.getResources().getStringArray(R.array.article_names));
+            TypedArray article_names = context.getResources().obtainTypedArray(R.array.article_names);
+            TypedArray article_desc = context.getResources().obtainTypedArray(R.array.article_desc);
             TypedArray article_photos = context.getResources().obtainTypedArray(R.array.article_photos);
             TypedArray article_prices = context.getResources().obtainTypedArray(R.array.article_prices);
-            List<String> article_types = Arrays.asList(context.getResources().getStringArray(R.array.article_types));
+            TypedArray article_types = context.getResources().obtainTypedArray(R.array.article_types);
 
-            for (int i = 0; i < article_names.size(); i++){
-                db.execSQL("INSERT INTO Product(name, photo, price, type) VALUES ('"
-                        + article_names.get(i) + "', "
-                        + article_photos.getResourceId(i, -1) + ", "
+            for (int i = 0; i < article_names.length(); i++){
+
+                String[] imgPath = String.valueOf(article_photos.getText(i)).split("/");
+                String img = imgPath[imgPath.length-1].replace(".png", "").trim();
+
+                db.execSQL("INSERT INTO Product(name, description, photo, price, type) VALUES ('"
+                        + article_names.getText(i) + "', '"
+                        + article_desc.getText(i) + "', '"
+                        + img + "', "
                         + article_prices.getFloat(i, -1) + ", '"
-                        + article_types.get(i) + "');");
+                        + article_types.getText(i) + "');");
             }
 
+            article_names.recycle();
+            article_desc.recycle();
             article_photos.recycle();
             article_prices.recycle();
+            article_types.recycle();
         }
     }
 }

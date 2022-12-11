@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shirt_joker">Joker T-Shirt</string>
+    <string name="shirt_opm">OPM T-Shirt</string>
+    <string name="shirt_maid">Maid T-Shirt</string>
+
+    <string name="shirt_joker_desc">A T-Shirt with joker</string>
+    <string name="shirt_opm_desc">A T-Shirt with opm</string>
+    <string name="shirt_maid_desc">A T-Shirt with maid</string>
+
+    <string name="type_shirt">Shirt</string>
+    <string name="type_pants">Pants</string>
+    <string name="type_accessory">Accessory</string>
+</resources>
