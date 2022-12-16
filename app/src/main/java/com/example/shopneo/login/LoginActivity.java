@@ -1,4 +1,4 @@
-package com.example.shopneo;
+package com.example.shopneo.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shopneo.R;
+import com.example.shopneo.database.Shopneo;
 
 public class LoginActivity extends AppCompatActivity {
 

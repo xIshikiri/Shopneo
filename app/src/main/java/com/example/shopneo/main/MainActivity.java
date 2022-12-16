@@ -1,4 +1,4 @@
-package com.example.shopneo;
+package com.example.shopneo.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -6,6 +6,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.shopneo.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.shopneo;
+package com.example.shopneo.database;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,6 +8,8 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.example.shopneo.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

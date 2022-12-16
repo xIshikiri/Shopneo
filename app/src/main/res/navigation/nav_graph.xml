@@ -7,7 +7,12 @@
 
     <fragment
         android:id="@+id/itemsFragment"
-        android:name="com.example.shopneo.ItemsFragment"
+        android:name="com.example.shopneo.main.ItemsFragment"
         android:label="fragment_items"
         tools:layout="@layout/fragment_items" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.shopneo.main.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
