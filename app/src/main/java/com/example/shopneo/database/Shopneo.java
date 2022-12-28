@@ -1,7 +1,9 @@
 package com.example.shopneo.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -10,6 +12,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.shopneo.R;
+import com.example.shopneo.main.adapter.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -174,6 +177,8 @@ public final class Shopneo {
                 String[] imgPath = String.valueOf(article_photos.getText(i)).split("/");
                 String img = imgPath[imgPath.length-1].replace(".png", "").trim();
 
+                ContentValues article = new ContentValues();
+
                 db.execSQL("INSERT INTO Product(name, description, photo, price, type) VALUES ('"
                         + article_names.getText(i) + "', '"
                         + article_desc.getText(i) + "', '"
@@ -181,6 +186,12 @@ public final class Shopneo {
                         + article_prices.getFloat(i, -1) + ", '"
                         + article_types.getText(i) + "');");
             }
+            db.execSQL("INSERT INTO Client(name, surname, date_of_birth, phone_number) VALUES ('"
+                    + "John" + "', '"
+                    + "Doe" + "', '"
+                    + "1990-01-01" + "', '"
+                    + "123456789" + "');");
+            db.execSQL("INSERT INTO Account(email, password, id_client) VALUES ('admin@gmail.com', 'admin', 1);");
 
             article_names.recycle();
             article_desc.recycle();
@@ -188,5 +199,24 @@ public final class Shopneo {
             article_prices.recycle();
             article_types.recycle();
         }
+
+        public Item[] getItemList(SQLiteDatabase db){
+            Cursor cursor = db.rawQuery("SELECT name, description, photo, price, type FROM Product", null);
+            Item[] items = new Item[cursor.getCount()];
+            int i = 0;
+            while (cursor.moveToNext()){
+                items[i] = new Item(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getFloat(3),
+                        cursor.getString(4)
+                );
+                i++;
+            }
+            cursor.close();
+            return items;
+        }
+
     }
 }
