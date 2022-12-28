@@ -4,8 +4,13 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="register">register</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="orders">Orders</string>
     <string name="logout">Logout</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="dateOfBirth">Date of Birth</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="registerInstead">Register Instead</string>
+    <string name="loginInstead">Login Instead</string>
 </resources>

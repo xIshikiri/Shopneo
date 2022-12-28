@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        String accountID = sharedPreferences.getString("accountID", null);
+        long accountID = sharedPreferences.getLong("accountID", -1);
         Log.i("db", "ID: " + accountID);
-        if (accountID == null){
+        if (accountID == -1){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
@@ -50,9 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.menuLogout:
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("accountID");
-                editor.apply();
+                sharedPreferences.edit().remove("accountID").apply();
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 return true;
