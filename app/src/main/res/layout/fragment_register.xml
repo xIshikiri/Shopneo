@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.RegisterFragment">
+    tools:context=".login.fragment.RegisterFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -233,5 +233,7 @@
                 android:textSize="15sp" />
 
         </LinearLayout>
+
     </ScrollView>
+
 </FrameLayout>

@@ -13,4 +13,10 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="registerInstead">Register Instead</string>
     <string name="loginInstead">Login Instead</string>
+    <string name="orderHistory">Order History</string>
+    <string name="orderID">Order ID:</string>
+    <string name="orderAddress">Address:</string>
+    <string name="orderName">Name:</string>
+    <string name="orderItems">Items:</string>
+    <string name="orderTotal">Total:</string>
 </resources>

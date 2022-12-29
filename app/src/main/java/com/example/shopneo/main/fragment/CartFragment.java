@@ -1,4 +1,4 @@
-package com.example.shopneo.main;
+package com.example.shopneo.main.fragment;
 
 import android.os.Bundle;
 

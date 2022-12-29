@@ -1,18 +1,30 @@
-package com.example.shopneo.main.adapter;
+package com.example.shopneo.model;
+
+import androidx.annotation.NonNull;
 
 public class Item {
+    private int id;
     private String name;
     private String desc;
     private String photo;
     private float price;
     private String type;
 
-    public Item(String name, String desc, String photo, float price, String type) {
+    public Item(int id, String name, String desc, String photo, float price, String type) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
         this.photo = photo;
         this.price = price;
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,6 +74,7 @@ public class Item {
 
         Item item = (Item) o;
 
+        if (id != item.id) return false;
         if (Float.compare(item.price, price) != 0) return false;
         if (!name.equals(item.name)) return false;
         if (!desc.equals(item.desc)) return false;
@@ -71,11 +84,25 @@ public class Item {
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
+        int result = id;
+        result = 31 * result + name.hashCode();
         result = 31 * result + desc.hashCode();
         result = 31 * result + photo.hashCode();
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + type.hashCode();
         return result;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", photo='" + photo + '\'' +
+                ", price=" + price +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

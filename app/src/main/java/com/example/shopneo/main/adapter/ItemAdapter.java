@@ -1,7 +1,7 @@
 package com.example.shopneo.main.adapter;
 
-import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopneo.R;
+import com.example.shopneo.database.Shopneo;
+import com.example.shopneo.model.Item;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
 
     private Item[] items;
     private Context context;
 
-    public ItemAdapter(Item[] items, Context context) {
-        this.items = items;
+    public ItemAdapter(Context context, SQLiteDatabase db) {
         this.context = context;
+        this.items = new Shopneo.ShopneoDBHelper(context).getItemList(db);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

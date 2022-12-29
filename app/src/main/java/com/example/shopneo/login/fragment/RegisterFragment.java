@@ -1,4 +1,4 @@
-package com.example.shopneo.login;
+package com.example.shopneo.login.fragment;
 
 import android.content.ContentValues;
 import android.content.Context;

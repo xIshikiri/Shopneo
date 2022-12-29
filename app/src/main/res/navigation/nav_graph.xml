@@ -7,12 +7,17 @@
 
     <fragment
         android:id="@+id/itemsFragment"
-        android:name="com.example.shopneo.main.ItemsFragment"
+        android:name="com.example.shopneo.main.fragment.ItemsFragment"
         android:label="fragment_items"
         tools:layout="@layout/fragment_items" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.shopneo.main.CartFragment"
+        android:name="com.example.shopneo.main.fragment.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.shopneo.main.fragment.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>
