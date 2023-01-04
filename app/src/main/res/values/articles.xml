@@ -30,5 +30,13 @@
         <item>type_shirt</item>
     </string-array>
 
+    <string-array name="article_sizes">
+        <item>XS</item>
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+    </string-array>
+
 
 </resources>

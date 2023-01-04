@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/itemsFragment">
+    app:startDestination="@id/itemShowcaseFragment">
 
     <fragment
         android:id="@+id/itemsFragment"
@@ -20,4 +20,9 @@
         android:name="com.example.shopneo.main.fragment.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/itemShowcaseFragment"
+        android:name="com.example.shopneo.main.fragment.ItemShowcaseFragment"
+        android:label="fragment_item_showcase"
+        tools:layout="@layout/fragment_item_showcase" />
 </navigation>
