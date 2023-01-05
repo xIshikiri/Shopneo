@@ -10,7 +10,7 @@ public class Item {
     private float price;
     private String type;
 
-    public Item(int id, String name, String desc, String photo, float price, String type) {
+    public Item(int id, String name, String desc, String type, float price, String photo) {
         this.id = id;
         this.name = name;
         this.desc = desc;

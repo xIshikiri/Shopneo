@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -49,7 +50,7 @@ public class ItemsFragment extends Fragment {
         db = dbHelper.getWritableDatabase();
 
         recyclerView = view.findViewById(R.id.itemRecycler);
-        recyclerView.setAdapter(new ItemAdapter(getContext(), db));
+        recyclerView.setAdapter(new ItemAdapter(getContext(), db, NavHostFragment.findNavController(this)));
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 }

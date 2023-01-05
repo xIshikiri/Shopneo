@@ -3,7 +3,6 @@ package com.example.shopneo.main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Context;
@@ -18,9 +17,13 @@ import android.view.MenuItem;
 import com.example.shopneo.R;
 import com.example.shopneo.login.LoginActivity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences loggedInAs;
+    SharedPreferences cart;
     NavController navController;
     NavHostFragment navHostFragment;
 
@@ -29,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        long accountID = sharedPreferences.getLong("accountID", -1);
+        loggedInAs = getSharedPreferences("user", Context.MODE_PRIVATE);
+        long accountID = loggedInAs.getLong("accountID", -1);
         Log.i("db", "ID: " + accountID);
         if (accountID == -1){
             Intent intent = new Intent(this, LoginActivity.class);
@@ -40,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
 
+        cart = getSharedPreferences("cart", Context.MODE_PRIVATE);
+        if (cart.contains("cart")){
+            Log.i("cart", "Cart: " + cart.getString("cart", ""));
+        } else {
+            Log.i("cart", "Cart: " + "Empty");
+        }
     }
 
     @Override
@@ -53,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.menuLogout:
-                sharedPreferences.edit().remove("accountID").apply();
+                loggedInAs.edit().remove("accountID").apply();
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 return true;

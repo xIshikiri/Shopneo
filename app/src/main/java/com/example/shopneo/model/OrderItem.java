@@ -14,6 +14,13 @@ public class OrderItem {
         this.size = size;
     }
 
+    public OrderItem(Item item, int count, String size) {
+        this.id = -1;
+        this.item = item;
+        this.count = count;
+        this.size = size;
+    }
+
     public float getTotal() {
         return item.getPrice() * count;
     }
@@ -58,7 +65,6 @@ public class OrderItem {
         OrderItem orderItem = (OrderItem) o;
 
         if (id != orderItem.id) return false;
-        if (count != orderItem.count) return false;
         if (!item.equals(orderItem.item)) return false;
         return size.equals(orderItem.size);
     }
@@ -67,7 +73,6 @@ public class OrderItem {
     public int hashCode() {
         int result = id;
         result = 31 * result + item.hashCode();
-        result = 31 * result + count;
         result = 31 * result + size.hashCode();
         return result;
     }

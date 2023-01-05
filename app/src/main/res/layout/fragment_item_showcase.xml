@@ -58,25 +58,27 @@
                 android:paddingHorizontal="10dp">
 
                 <Spinner
-                    android:id="@+id/itemShowCaseQuantity"
+                    android:id="@+id/itemShowCaseSize"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:contentDescription="size"
                     android:textAlignment="center"/>
 
                 <ImageButton
-                    android:id="@+id/showcaseButtonSubstract"
+                    android:id="@+id/itemShowCaseLess"
                     android:layout_width="50dp"
                     android:layout_height="60dp"
                     android:src="@drawable/baseline_keyboard_arrow_down_24"
                     android:contentDescription="buttonSubstract"/>
                 <EditText
+                    android:id="@+id/itemShowCaseQuantity"
                     android:layout_width="50dp"
                     android:layout_height="60dp"
-                    android:hint="1"
+                    android:text="1"
+                    android:inputType="number"
                     android:textAlignment="center"/>
                 <ImageButton
-                    android:id="@+id/showcaseButtonAdd"
+                    android:id="@+id/itemShowCaseMore"
                     android:layout_width="50dp"
                     android:layout_height="60dp"
                     android:src="@drawable/baseline_keyboard_arrow_up_24"
