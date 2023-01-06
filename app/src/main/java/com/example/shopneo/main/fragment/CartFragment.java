@@ -5,14 +5,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.shopneo.R;
+import com.example.shopneo.main.adapter.CartAdapter;
+
+import java.util.Objects;
 
 public class CartFragment extends Fragment {
+
+    RecyclerView recyclerView;
 
     public CartFragment() {
         // Required empty public constructor
@@ -33,5 +40,9 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.cartItems);
+        recyclerView.setAdapter(new CartAdapter(Objects.requireNonNull(getContext())));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

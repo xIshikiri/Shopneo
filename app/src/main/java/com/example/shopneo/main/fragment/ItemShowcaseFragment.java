@@ -109,7 +109,7 @@ public class ItemShowcaseFragment extends Fragment {
         });
 
         addToCart.setOnClickListener(l -> {
-            if(!quantity.getText().toString().equals("")) {
+            if(quantity.getText().toString().equals("")) {
                 quantity.setText("1");
             }
             Gson gson = new Gson();
@@ -121,7 +121,8 @@ public class ItemShowcaseFragment extends Fragment {
                 orderItems.add(orderItem);
                 json = gson.toJson(orderItems);
                 cart.edit().putString("cart", json).apply();
-                Log.i("cart", "Cart: " + json);
+                Log.i("cart", "JSON Cart: " + json);
+                Log.i("cart", "Cart: " + orderItems);
             } else {
                 json = cart.getString("cart", null);
                 Log.i("cart", json);

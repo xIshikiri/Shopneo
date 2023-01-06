@@ -68,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menuOrders:
                 navController.navigate(R.id.historyFragment);
+                return true;
+            case R.id.menuCart:
+                navController.navigate(R.id.cartFragment);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

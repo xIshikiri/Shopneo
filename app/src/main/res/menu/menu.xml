@@ -6,6 +6,11 @@
         android:title="@string/orders"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/menuCart"
+        android:icon="@drawable/baseline_shopping_basket_24"
+        android:title="@string/cart"
+        app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/menuLogout"
         android:icon="@drawable/baseline_login_24"
         android:title="@string/logout"
