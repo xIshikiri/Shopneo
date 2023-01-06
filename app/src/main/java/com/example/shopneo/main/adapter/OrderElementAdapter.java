@@ -14,9 +14,11 @@ import com.example.shopneo.R;
 import com.example.shopneo.database.Shopneo;
 import com.example.shopneo.model.OrderItem;
 
+import java.util.ArrayList;
+
 public class OrderElementAdapter extends RecyclerView.Adapter<OrderElementAdapter.ViewHolder> {
 
-    OrderItem[] items;
+    ArrayList<OrderItem> items;
     Context context;
 
     public OrderElementAdapter(Context context, SQLiteDatabase db, long orderID) {
@@ -43,12 +45,12 @@ public class OrderElementAdapter extends RecyclerView.Adapter<OrderElementAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(items[position].toString());
+        holder.textView.setText(items.get(position).getCount() + " x " + holder.itemView.getContext().getString(holder.itemView.getContext().getResources().getIdentifier(items.get(position).getItem().getName(), "string", holder.itemView.getContext().getPackageName())) + " [" + items.get(position).getSize() + "]");
     }
 
     @Override
     public int getItemCount() {
-        return items.length;
+        return items.size();
     }
 
 }

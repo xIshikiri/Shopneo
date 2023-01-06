@@ -54,7 +54,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.orderId.setText(orders[position].getId() + " ");
-        holder.orderAddress.setText(orders[position].getAddress());
+        holder.orderAddress.setText(orders[position].getHomeAddress() + ", " + orders[position].getCity() + ", " + orders[position].getPostalCode());
         holder.orderName.setText(orders[position].getName());
         holder.orderItems.setAdapter(new OrderElementAdapter(context, db, orders[position].getId()));
         holder.orderItems.setLayoutManager(new LinearLayoutManager(context));

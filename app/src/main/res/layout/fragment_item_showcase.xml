@@ -15,9 +15,9 @@
             <ImageView
                 android:id="@+id/itemShowCaseImage"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="470dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/joker"/>
+                android:src="@drawable/ic_launcher_background"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                     android:id="@+id/itemShowCaseTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="itemShowCaseTitle"
+                    android:text="default title"
                     android:textSize="24sp"
                     android:layout_marginBottom="7dp"/>
 
@@ -37,7 +37,7 @@
                     android:id="@+id/itemShowCasePrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="99,00 PLN"
+                    android:text="0,00 zl"
                     android:textSize="16sp"
                     android:layout_marginBottom="15dp"/>
 
@@ -46,7 +46,7 @@
                     android:id="@+id/itemShowCaseDescription"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:text="@string/LoremIpsum"
+                    android:text="Default Description"
                     android:textSize="16sp"/>
             </LinearLayout>
             <LinearLayout
@@ -88,7 +88,7 @@
                     android:id="@+id/itemShowCaseBuyButton"
                     android:layout_width="130dp"
                     android:layout_height="60dp"
-                    android:text="Dodaj do koszyka"
+                    android:text="@string/addToCart"
                     android:textSize="11sp"
                     android:layout_marginHorizontal="5dp"/>
 

@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="shirt_joker">Joker T-Shirt</string>
-    <string name="shirt_opm">OPM T-Shirt</string>
-    <string name="shirt_maid">Maid T-Shirt</string>
+    <string name="tshirt1">T-Shirt 1</string>
+    <string name="tshirt1_desc">T-Shirt 1 description</string>
 
-    <string name="shirt_joker_desc">A T-Shirt with joker</string>
-    <string name="shirt_opm_desc">A T-Shirt with opm</string>
-    <string name="shirt_maid_desc">A T-Shirt with maid</string>
+    <string name="tshirt2">T-Shirt 2</string>
+    <string name="tshirt2_desc">T-Shirt 2 description</string>
 
-    <string name="type_shirt">Shirt</string>
+    <string name="jacket">Jacket</string>
+    <string name="jacket_desc">Jacket description</string>
+
+    <string name="jeans">Jeans</string>
+    <string name="jeans_desc">Jeans description</string>
+
+    <string name="sweatshirt">Sweatshirt</string>
+    <string name="sweatshirt_desc">Sweatshirt description</string>
+
+    <string name="type_tshirt">T-Shirt</string>
     <string name="type_pants">Pants</string>
-    <string name="type_accessory">Accessory</string>
+    <string name="type_jacket">Jacket</string>
+    <string name="type_sweatshirt">Sweatshirt</string>
 </resources>

@@ -22,4 +22,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="LoremIpsum">LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum</string>
     <string name="cart">Cart</string>
+    <string name="priceTotal">Total Price:</string>
+    <string name="orderPostalCode">Postal Code</string>
+    <string name="orderCity">City</string>
+    <string name="orderHomeAddress">Home Address</string>
+    <string name="orderButton">Order</string>
+    <string name="orderData">Order Data</string>
+    <string name="addToCart">Add to Cart</string>
+    <string name="cartEmpty">Your cart is empty!</string>
+    <string name="passwordsDontMatch">Passwords don\'t match!</string>
+    <string name="fillInAllFields">Please fill in all fields!</string>
+    <string name="emailAlreadyExists">This email is already registered!</string>
+    <string name="accountAlreadyExists">This account already exists!</string>
 </resources>

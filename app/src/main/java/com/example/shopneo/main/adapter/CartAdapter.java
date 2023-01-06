@@ -2,22 +2,17 @@ package com.example.shopneo.main.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopneo.R;
-import com.example.shopneo.database.Shopneo;
-import com.example.shopneo.model.Order;
 import com.example.shopneo.model.OrderItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,14 +27,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
     SharedPreferences cart;
     String json;
     Gson gson;
+    EventListener eventListener;
 
-    public CartAdapter(Context context) {
+    public CartAdapter(Context context, EventListener eventListener) {
         this.context = context;
         cart = context.getSharedPreferences("cart", Context.MODE_PRIVATE);
         json = cart.getString("cart", "");
         gson = new Gson();
         Type orderItemsType = new TypeToken<ArrayList<OrderItem>>(){}.getType();
         orderItems = gson.fromJson(json, orderItemsType);
+
+        this.eventListener = eventListener;
     }
 
     @NonNull
@@ -67,10 +65,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
 
                 holder.cartItemCount.setText(orderItems.get(position).getCount() + "");
                 holder.cartItemPrice.setText(String.format("%.02f", orderItems.get(position).getItem().getPrice() * orderItems.get(position).getCount()) + " zl");
+                eventListener.update();
             } else {
                 orderItems.remove(position);
                 json = gson.toJson(orderItems);
                 cart.edit().putString("cart", json).apply();
+                eventListener.update();
                 notifyDataSetChanged();
             }
         });
@@ -86,19 +86,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
 
             holder.cartItemCount.setText(orderItems.get(position).getCount() + "");
             holder.cartItemPrice.setText(String.format("%.02f", orderItems.get(position).getItem().getPrice() * orderItems.get(position).getCount()) + " zl");
+            eventListener.update();
         });
 
         holder.cartItemDelete.setOnClickListener(l -> {
             orderItems.remove(position);
             json = gson.toJson(orderItems);
             cart.edit().putString("cart", json).apply();
+            eventListener.update();
             notifyDataSetChanged();
         });
+        eventListener.update();
     }
 
     @Override
     public int getItemCount() {
+        if (orderItems == null) {
+            return 0;
+        }
         return orderItems.size();
+    }
+
+    public interface EventListener {
+        void update();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

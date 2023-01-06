@@ -17,6 +17,8 @@ import com.example.shopneo.model.Item;
 import com.example.shopneo.model.Order;
 import com.example.shopneo.model.OrderItem;
 
+import java.util.ArrayList;
+
 public final class Shopneo {
 
     private Shopneo() {}
@@ -237,18 +239,18 @@ public final class Shopneo {
             return item;
         }
 
-        public OrderItem[] getOrderItems(SQLiteDatabase db, long orderID) {
+        public ArrayList<OrderItem> getOrderItems(SQLiteDatabase db, long orderID) {
             Cursor cursor = db.rawQuery("SELECT * FROM OrderProduct WHERE id_order = " + orderID, null);
-            OrderItem[] orderItems = new OrderItem[cursor.getCount()];
+            ArrayList<OrderItem> orderItems = new ArrayList<>();
             int i = 0;
             while (cursor.moveToNext()) {
-                orderItems[i] = new OrderItem(
+                orderItems.add(new OrderItem(
                         cursor.getInt(1),
                         getItem(db, cursor.getInt(2)),
                         cursor.getInt(3),
                         cursor.getString(4)
-                );
-                Log.i("getOrderItems", orderItems[i].toString());
+                ));
+                Log.i("getOrderItems", orderItems.get(i).toString());
                 i++;
             }
             cursor.close();
@@ -265,7 +267,9 @@ public final class Shopneo {
                         cursor.getInt(1),
                         getOrderItems(db, cursor.getInt(0)),
                         cursor.getString(2),
-                        cursor.getString(3) + ", " + cursor.getString(5) + ", " + cursor.getString(4),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
                         getClientData(db, cursor.getInt(1)).getName() + " " + getClientData(db, cursor.getInt(1)).getSurname()
                 );
                 Log.i("getOrder", orders[i].toString());
@@ -291,5 +295,25 @@ public final class Shopneo {
             return clientData;
         }
 
+        public void insertOrder(SQLiteDatabase db, Order order){
+            ContentValues values = new ContentValues();
+            values.put("id_client", order.getClientID());
+            values.put("date", order.getDate());
+            values.put("home_address", order.getHomeAddress());
+            values.put("city", order.getCity());
+            values.put("postal_code", order.getPostalCode());
+            long orderID = db.insert("Orders", null, values);
+            Log.i("cart", "Order Data: " + values.toString());
+
+            for (OrderItem orderItem : order.getItems()) {
+                values = new ContentValues();
+                values.put("id_order", orderID);
+                values.put("id_product", orderItem.getItem().getId());
+                values.put("count", orderItem.getCount());
+                values.put("size", orderItem.getSize());
+                db.insert("OrderProduct", null, values);
+            }
+            Log.i("cart", "Order item: " + values.toString());
+        };
     }
 }

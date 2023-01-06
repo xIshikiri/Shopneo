@@ -13,11 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shopneo.R;
 import com.example.shopneo.database.Shopneo;
@@ -75,20 +77,43 @@ public class RegisterFragment extends Fragment {
         sharedPreferences = view.getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
 
         registerButton.setOnClickListener(l -> {
-            ContentValues values = new ContentValues();
-            values.put("name", name.getText().toString());
-            values.put("surname", surname.getText().toString());
-            values.put("date_of_birth", dateOfBirth.getText().toString());
-            values.put("phone_number", phoneNumber.getText().toString());
-            long newRowId = db.insert("Client", null, values);
-            values = new ContentValues();
-            values.put("id_client", newRowId);
-            values.put("email", email.getText().toString());
-            values.put("password", password.getText().toString());
-            long accountID = db.insert("Account", null, values);
-            sharedPreferences.edit().putLong("accountId", accountID).apply();
-            Intent intent = new Intent(this.getContext(), MainActivity.class);
-            startActivity(intent);
+
+            String e = email.getText().toString();
+            String p = password.getText().toString();
+            Log.i("db", e + " " + p);
+            Cursor cursor = db.query("Account", new String[]{"_id", "email"}, "email=?", new String[]{e}, null, null, null);
+            Log.i("db", String.valueOf(cursor.getCount()));
+            cursor.moveToFirst();
+
+            if(name.getText().toString().isEmpty() || surname.getText().toString().isEmpty() || dateOfBirth.getText().toString().isEmpty() || phoneNumber.getText().toString().isEmpty() || email.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty()){
+                Toast.makeText(view.getContext(), R.string.fillInAllFields, Toast.LENGTH_SHORT).show();
+            } else if(!password.getText().toString().equals(confirmPassword.getText().toString())){
+                Toast.makeText(view.getContext(), R.string.passwordsDontMatch, Toast.LENGTH_SHORT).show();
+            } else if(cursor.getCount() > 0){
+                Toast.makeText(view.getContext(), R.string.accountAlreadyExists, Toast.LENGTH_SHORT).show();
+                cursor.close();
+            } else {
+                cursor.close();
+                ContentValues values = new ContentValues();
+                values.put("name", name.getText().toString());
+                values.put("surname", surname.getText().toString());
+                values.put("date_of_birth", dateOfBirth.getText().toString());
+                values.put("phone_number", phoneNumber.getText().toString());
+                long newRowId = db.insert("Client", null, values);
+                values = new ContentValues();
+                values.put("id_client", newRowId);
+                values.put("email", email.getText().toString());
+                values.put("password", password.getText().toString());
+                long accountID = db.insert("Account", null, values);
+                if(accountID != -1){
+                    sharedPreferences.edit().putLong("accountID", accountID).apply();
+                    Intent intent = new Intent(this.getContext(), MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(view.getContext(), R.string.emailAlreadyExists, Toast.LENGTH_SHORT).show();
+                    db.delete("Client", "id_client = ?", new String[]{String.valueOf(newRowId)});
+                }
+            }
         });
 
         loginInsteadButton.setOnClickListener(l -> {

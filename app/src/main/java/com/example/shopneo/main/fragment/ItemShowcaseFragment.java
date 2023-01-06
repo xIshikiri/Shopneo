@@ -117,14 +117,14 @@ public class ItemShowcaseFragment extends Fragment {
             OrderItem orderItem = new OrderItem(item, Integer.parseInt(quantity.getText().toString()), spinner.getSelectedItem().toString());
             List<OrderItem> orderItems = new ArrayList<>();
             Type orderItemsType = new TypeToken<ArrayList<OrderItem>>(){}.getType();
-            if(cart.getString("cart", null) == null) {
+            if(cart.getString("cart", "") == "") {
                 orderItems.add(orderItem);
                 json = gson.toJson(orderItems);
                 cart.edit().putString("cart", json).apply();
                 Log.i("cart", "JSON Cart: " + json);
                 Log.i("cart", "Cart: " + orderItems);
             } else {
-                json = cart.getString("cart", null);
+                json = cart.getString("cart", "");
                 Log.i("cart", json);
                 orderItems = gson.fromJson(json, orderItemsType);
                 for (OrderItem o : orderItems) {
