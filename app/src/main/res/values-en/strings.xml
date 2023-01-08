@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Shopneo</string>
     <string name="login">login</string>
@@ -32,4 +33,18 @@
     <string name="fillInAllFields">Please fill in all fields!</string>
     <string name="emailAlreadyExists">This email is already registered!</string>
     <string name="accountAlreadyExists">This account already exists!</string>
+    <string name="tshirt1">T-Shirt</string>
+    <string name="tshirt1_desc">A very cool T-Shirt</string>
+    <string name="tshirt2">Regular Shirt</string>
+    <string name="tshirt2_desc">A T-Shirt of high quality</string>
+    <string name="jacket">Jacket</string>
+    <string name="jacket_desc">A nice jacket for a cold weather</string>
+    <string name="jeans">Jeans</string>
+    <string name="jeans_desc">A comfy pair of jeans</string>
+    <string name="sweatshirt">Sweatshirt</string>
+    <string name="sweatshirt_desc">An awesome sweatshirt</string>
+    <string name="type_tshirt">T-Shirt</string>
+    <string name="type_pants">Pants</string>
+    <string name="type_jacket">Jacket</string>
+    <string name="type_sweatshirt">Sweatshirt</string>
 </resources>
